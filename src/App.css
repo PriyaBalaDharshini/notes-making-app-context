@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    height: 100vh;
+}
+
+.App {
+    margin: 20px;
+}
+
+
+.col-2 {
+    background-color: #F5F5F5;
+
+}
+
+.col-10 {
+    background-color: #E3E8F8;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #203562;
+    font-size: 22px;
+}
+
+ul li i {
+    margin: 28px 10px;
+}
+
+ul li a:hover {
+    color: white;
+    background-color: #203562;
+    padding: 10px;
+    border-radius: 10px;
+}
