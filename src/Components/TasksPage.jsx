@@ -6,7 +6,7 @@ function TasksPage() {
             <div className="tasks-page">
                 <div className="task-input">
                     <div className="input-inside-task">
-                        <h3 id='add-a-task'><b>Add a Task</b></h3>
+                        <h4 id='add-a-task'><b>Add a Task</b></h4>
                         <div classNmae="input">
                             <input
                                 id='title-of-task'
