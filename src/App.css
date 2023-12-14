@@ -42,3 +42,89 @@ ul li a:hover {
     padding: 10px;
     border-radius: 10px;
 }
+
+.note-input {
+    background-color: #F5F5F5;
+    width: 90%;
+    height: 350px;
+    margin: 50px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px 0px #888888;
+}
+
+.note-display {
+    background-color: #F5F5F5;
+    width: 90%;
+    height: 350px;
+    margin: 50px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 5px 0px #888888;
+}
+
+#add-a-note {
+    padding: 15px;
+    color: #203562;
+}
+
+.input input {
+    margin: 0px 20px;
+    border: none;
+    background-color: #F5F5F5;
+}
+
+.input #description-of-note {
+    height: 80px;
+    width: 90%;
+}
+
+
+#time-display {
+    border: 1px solid none;
+    background-color: #E3E8F8;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px 25px;
+}
+
+#time-display i {
+    margin-right: 10px;
+}
+
+
+.button-add {
+    margin: 15px;
+    padding: 10px;
+}
+
+.button-add button {
+    width: 90px;
+}
+
+.note-icons {
+    display: flex;
+    margin: 15px;
+}
+
+.note-icons p {
+    padding: 0px 15px;
+    font-size: 20px;
+}
+
+.notes-box {
+    display: flex;
+}
+
+.notes-box .card {
+    margin: 45px 20px;
+    background-color: #F5F5F5;
+    box-shadow: 0px 0px 5px 0px #888888;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttons i {
+    margin-right: 10px;
+}

@@ -1,8 +1,12 @@
 import React from 'react'
+import NotesPage from '../Components/NotesPage'
+
 
 function Notes() {
     return (
-        <div>Notes</div>
+        <div>
+            <NotesPage />
+        </div>
     )
 }
 
