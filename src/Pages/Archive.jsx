@@ -2,7 +2,7 @@ import React from 'react'
 
 function Archive() {
     return (
-        <div>Archive</div>
+        <div className='mx-5 my-5'>Empty...</div>
     )
 }
 

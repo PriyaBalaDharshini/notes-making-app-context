@@ -14,7 +14,7 @@ function NotesPage() {
         <div>
             <div className="notes-page">
                 <div className="note-input">
-                    <div className="input-inside">
+                    <div className="input-inside-note">
                         <h4 id='add-a-note'><b>Add a Note</b></h4>
                         <div className="input">
                             <h5>
@@ -45,7 +45,9 @@ function NotesPage() {
                         </div>
                     </div>
                 </div>
+
                 <h4 className=' mx-5'><i class='bx bx-notepad mx-3'></i><b>My Notes</b></h4>
+                
                 <div className="note-display">
                     <div className="notes-box">
                         <div class="card" style={{ width: "16rem" }}>
