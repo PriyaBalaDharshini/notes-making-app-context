@@ -2,19 +2,33 @@ import React, { useContext, useEffect, useState } from 'react'
 import { NotesContext } from '../Context/NotesContext';
 
 function NotesPage() {
-    /* For Displaying Time */
+
     const [time, setTime] = useState(new Date());
     const [title, setTitle] = useState("");
     const [note, setNote] = useState("");
+    const [id, setId] = useState(0);
+    const [buttonText, setButtonText] = useState("Add");
 
-    const { dispatch } = useContext(NotesContext);
+    const { state, dispatch } = useContext(NotesContext);
+
+    const { notesList, selectedNote } = state;
 
     function handleAddNote(e) {
-        dispatch({
-            type: 'ADD_NOTE',
-            payload: title, note, time
-        })
-
+        e.preventDefault()
+        if (buttonText === "Update") {
+            dispatch({
+                type: 'UPDATE_NOTE',
+                payload: { id, title, note, time }
+            })
+        } else {
+            dispatch({
+                type: 'ADD_NOTE',
+                payload: { title, note, time }
+            });
+        }
+        setTitle("");
+        setNote("");
+        setButtonText("Add");
     }
 
     useEffect(() => {
@@ -22,6 +36,31 @@ function NotesPage() {
             setTime(new Date());
         }, 1000)
     })
+
+    function handleEditNote(note) {
+        dispatch({
+            type: 'SET_SELECTED_NOTE',
+            payload: note
+        });
+    }
+
+    useEffect(() => {
+        if (Object.keys(selectedNote).length !== 0) {
+            setTitle(selectedNote.title);
+            setNote(selectedNote.note);
+            setId(selectedNote.id);
+            setButtonText("Update");
+        } else {
+            setButtonText("Add");
+        }
+    }, [selectedNote]);
+
+    function handleDeleteNote(note) {
+        dispatch({
+            type: "REMOVE_NOTE",
+            payload: { id: note.id }
+        })
+    }
 
     return (
         <div>
@@ -50,7 +89,7 @@ function NotesPage() {
                         </div> <br />
                         <span id='time-display'><i class="bx bx-time-five"></i>{`${time.toLocaleTimeString()}`}</span>
                         <div className='button-add'>
-                            <button className='btn btn-outline-dark' onClick={(e) => handleAddNote(e)} >Add</button>
+                            <button className='btn btn-outline-dark' onClick={(e) => handleAddNote(e)} >{buttonText}</button>
                         </div>
                         <div className='note-icons'>
                             <p><i class='bx bx-color-fill'></i></p>
@@ -67,45 +106,22 @@ function NotesPage() {
 
                 <div className="note-display">
                     <div className="notes-box">
-                        <div class="card" style={{ width: "16rem" }}>
-                            <div class="card-body">
-                                <h5 class="card-title"> <b>Card title</b></h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <p className='card-text'>
-                                    {new Date().toLocaleTimeString()}
-                                </p>
-                                <div className="buttons">
-                                    <button className='btn  btn-outline-dark'><i class="bx bx-pencil"></i>Edit</button>
-                                    <button className='btn  btn-outline-dark'><i class="bx bx-trash"></i>Delete</button>
+                        {notesList && notesList.map((note) => {
+                            return (<div class="card" style={{ width: "16rem" }} key={note.id}>
+                                <div class="card-body">
+                                    <h5 class="card-title"> <b>{note.title}</b></h5>
+                                    <p class="card-text">{note.note}</p>
+                                    <p className='card-text'>
+                                        {new Date(note.time).toLocaleTimeString()}
+                                    </p>
+                                    <div className="buttons">
+                                        <button className='btn  btn-outline-dark' onClick={() => handleEditNote(note)}><i class="bx bx-pencil"></i>Edit</button>
+                                        <button className='btn  btn-outline-dark' onClick={() => handleDeleteNote(note)}><i class="bx bx-trash"></i>Delete</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card" style={{ width: "16rem" }}>
-                            <div class="card-body">
-                                <h5 class="card-title"> <b>Card title</b></h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <p className='card-text'>
-                                    {new Date().toLocaleTimeString()}
-                                </p>
-                                <div className="buttons">
-                                    <button className='btn  btn-outline-dark'><i class="bx bx-pencil"></i>Edit</button>
-                                    <button className='btn  btn-outline-dark'><i class="bx bx-trash"></i>Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card" style={{ width: "16rem" }}>
-                            <div class="card-body">
-                                <h5 class="card-title"> <b>Card title</b></h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <p className='card-text'>
-                                    {new Date().toLocaleTimeString()}
-                                </p>
-                                <div className="buttons">
-                                    <button className='btn  btn-outline-dark'><i class="bx bx-pencil"></i>Edit</button>
-                                    <button className='btn  btn-outline-dark'><i class="bx bx-trash"></i>Delete</button>
-                                </div>
-                            </div>
-                        </div>
+                            </div>)
+                        }
+                        )}
                     </div>
                 </div>
             </div>
