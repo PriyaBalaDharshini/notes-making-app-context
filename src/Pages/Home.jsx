@@ -4,9 +4,12 @@ import { NotesContext } from '../Context/NotesContext';
 
 
 function Home() {
-    const { tasksList } = useContext(TasksContext);
-    const { notesList } = useContext(NotesContext);
 
+    const notesContext = useContext(NotesContext);
+    const { notesList } = notesContext.state;
+
+    const taskContext = useContext(TasksContext);
+    const { taskList } = taskContext.state;
 
     return (
         <div>
@@ -28,7 +31,7 @@ function Home() {
             <h3 className=' mx-5'><i className='bx bx-check-circle   mx-4'></i><b>My Tasks</b></h3>
             <div className="home-tasks">
                 <ul className='text-center'>
-                    {tasksList && tasksList.map((task) => (
+                    {taskList && taskList.map((task) => (
                         <li key={task.id}>
                             <div className="card text-bg-light" style={{ width: "97%" }}>
                                 <div className="card-body horizontal-layout">
@@ -39,7 +42,7 @@ function Home() {
                                         <p className="card-text">{task.time}</p>
                                     </div>
 
-                                    <i className='bx bx-start'></i>
+                                    <i className='bx bx-star'></i>
                                 </div>
                             </div>
                         </li>

@@ -14,7 +14,7 @@ function NotesPage() {
     const { notesList, selectedNote } = state;
 
     function handleAddNote(e) {
-        e.preventDefault()
+        e.preventDefault();
         if (buttonText === "Update") {
             dispatch({
                 type: 'UPDATE_NOTE',
